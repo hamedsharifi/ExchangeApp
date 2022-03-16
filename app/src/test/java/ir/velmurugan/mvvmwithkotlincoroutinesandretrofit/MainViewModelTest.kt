@@ -1,8 +1,8 @@
 package ir.velmurugan.mvvmwithkotlincoroutinesandretrofit
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import ir.moonify.exchangeapp.MainRepository
-import ir.moonify.exchangeapp.MainViewModel
+import ir.moonify.exchangeapp.repository.MainRepository
+import ir.moonify.exchangeapp.viewmodel.MainViewModel
 import ir.moonify.exchangeapp.Movie
 import ir.moonify.exchangeapp.RetrofitService
 import kotlinx.coroutines.Dispatchers
@@ -47,10 +47,10 @@ class MainViewModelTest {
     @Test
     fun getAllMoviesTest() {
         runBlocking {
-            Mockito.`when`(mainRepository.getAllMovies())
+            Mockito.`when`(mainRepository.getAllCurrencies())
                 .thenReturn(Response.success(listOf<Movie>(Movie("movie", "", "new"))))
-            mainViewModel.getAllMovies()
-            val result = mainViewModel.movieList.getOrAwaitValue()
+            mainViewModel.getAllCurrencies()
+            val result = mainViewModel.currencyList.getOrAwaitValue()
             assertEquals(listOf<Movie>(Movie("movie", "", "new")), result)
         }
     }
@@ -59,10 +59,10 @@ class MainViewModelTest {
     @Test
     fun `empty movie list test`() {
         runBlocking {
-            Mockito.`when`(mainRepository.getAllMovies())
+            Mockito.`when`(mainRepository.getAllCurrencies())
                 .thenReturn(Response.success(listOf<Movie>()))
-            mainViewModel.getAllMovies()
-            val result = mainViewModel.movieList.getOrAwaitValue()
+            mainViewModel.getAllCurrencies()
+            val result = mainViewModel.currencyList.getOrAwaitValue()
             assertEquals(listOf<Movie>(), result)
         }
     }

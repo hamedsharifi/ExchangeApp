@@ -1,6 +1,6 @@
 package ir.velmurugan.mvvmwithkotlincoroutinesandretrofit
 
-import ir.moonify.exchangeapp.MainRepository
+import ir.moonify.exchangeapp.repository.MainRepository
 import ir.moonify.exchangeapp.Movie
 import ir.moonify.exchangeapp.RetrofitService
 import kotlinx.coroutines.runBlocking
@@ -32,7 +32,7 @@ class MainRepositoryTest {
     fun `get all movie test`() {
         runBlocking {
             Mockito.`when`(apiService.getAllMovies()).thenReturn(Response.success(listOf<Movie>()))
-            val response = mainRepository.getAllMovies()
+            val response = mainRepository.getAllCurrencies()
             assertEquals(listOf<Movie>(), response.body())
         }
 

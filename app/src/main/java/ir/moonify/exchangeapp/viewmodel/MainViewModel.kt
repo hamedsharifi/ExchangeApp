@@ -1,34 +1,30 @@
-package ir.moonify.exchangeapp
+package ir.moonify.exchangeapp.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ir.moonify.exchangeapp.model.CurrencyHolder
+import ir.moonify.exchangeapp.repository.MainRepository
 import kotlinx.coroutines.*
 
 class MainViewModel constructor(private val mainRepository: MainRepository) : ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
-    val movieList = MutableLiveData<List<Movie>>()
+    val currencyList = MutableLiveData<List<CurrencyHolder>>()
     var job: Job? = null
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
     }
     val loading = MutableLiveData<Boolean>()
 
-    fun getAllMovies() {
-
-        job = CoroutineScope(Dispatchers.IO + exceptionHandler).launch {
+    fun getAllCurrencies() {
+        job = CoroutineScope(Dispatchers.IO).launch {
             loading.postValue(true)
-            val response = mainRepository.getAllMovies()
+            val currencyList = mainRepository.getAllCurrencies()
             withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    movieList.postValue(response.body())
-                    loading.value = false
-                } else {
-                    onError("Error : ${response.message()} ")
-                }
+                this@MainViewModel.currencyList.postValue(currencyList)
+                loading.value = false
             }
         }
-
     }
 
     private fun onError(message: String) {

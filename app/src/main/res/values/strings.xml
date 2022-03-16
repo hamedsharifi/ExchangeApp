@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Exchange App</string>
+    <string name="wallet">Wallet</string>
 </resources>

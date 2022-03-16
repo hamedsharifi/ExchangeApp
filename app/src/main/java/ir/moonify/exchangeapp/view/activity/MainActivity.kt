@@ -6,12 +6,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ir.moonify.exchangeapp.*
 import ir.moonify.exchangeapp.databinding.ActivityMainBinding
+import ir.moonify.exchangeapp.repository.MainRepository
+import ir.moonify.exchangeapp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var viewModel: MainViewModel
-    private val adapter = MovieAdapter()
+    private val adapter = WalletAdapter()
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +24,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val retrofitService = RetrofitService.getInstance()
         val mainRepository = MainRepository(retrofitService)
-        binding.recyclerview.adapter = adapter
+        binding.balances.adapter = adapter
+        binding.balances.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL ,false)
         viewModel = ViewModelProvider(this, MyViewModelFactory(mainRepository)).get(MainViewModel::class.java)
-        viewModel.movieList.observe(this) {
-            adapter.setMovies(it)
+        viewModel.currencyList.observe(this) {
+            adapter.setWallet(it)
         }
 
         viewModel.errorMessage.observe(this) {
@@ -38,6 +43,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        viewModel.getAllMovies()
+        viewModel.getAllCurrencies()
     }
 }

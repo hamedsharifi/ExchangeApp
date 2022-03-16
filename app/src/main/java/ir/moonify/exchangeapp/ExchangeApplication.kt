@@ -40,7 +40,7 @@ class ExchangeApplication public constructor() : Application() {
         for (i in offlineRates.rates.indices) {
             val currencyHolder: CurrencyHolder = CurrencyHolder(
                 offlineRates.rates.get(i),
-                if (offlineRates.rates.get(i).equals(Constants.EUR)) 1000 else 0
+                if (offlineRates.rates.get(i).equals(Constants.EUR)) 1000.00 else 0.0
             )
             currencyList.add(currencyHolder)
         }
