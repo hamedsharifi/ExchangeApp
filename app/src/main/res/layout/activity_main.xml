@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context="ir.moonify.exchangeapp.view.activity.MainActivity">
 
-    <ProgressBar
-        android:id="@+id/progressDialog"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:indeterminateTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/wallet"
         android:layout_width="wrap_content"
@@ -28,11 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/caption"
+        android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="1000.00"
         android:textColor="#1E1D1D"
         android:textSize="34sp"
@@ -46,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="EUR"
-        app:layout_constraintBaseline_toBaselineOf="@+id/caption"
-        app:layout_constraintStart_toEndOf="@+id/caption" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/amount"
+        app:layout_constraintStart_toEndOf="@+id/amount" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/balances"
@@ -56,9 +46,140 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
-        tools:listitem="@layout/balance_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caption" />
+        app:layout_constraintTop_toBottomOf="@+id/amount"
+        tools:listitem="@layout/balance_item" />
+
+    <TextView
+        android:id="@+id/exchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="Exchange"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/balances" />
+
+    <Spinner
+        android:id="@+id/sourceSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/sourceEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/sourceEdit" />
+
+    <ImageView
+        android:id="@+id/sellImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exchange"
+        app:srcCompat="@drawable/arrow_down" />
+
+    <TextView
+        android:id="@+id/sellCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="SELL"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/sellImage"
+        app:layout_constraintStart_toEndOf="@+id/sellImage"
+        app:layout_constraintTop_toTopOf="@+id/sellImage" />
+
+    <EditText
+        android:id="@+id/sourceEdit"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/sellCaption"
+        app:layout_constraintEnd_toStartOf="@+id/sourceSpinner"
+        app:layout_constraintTop_toTopOf="@+id/sellCaption">
+
+        <requestFocus />
+    </EditText>
+
+    <ImageView
+        android:id="@+id/receiveImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sellImage"
+        app:srcCompat="@drawable/arrow_up" />
+
+    <TextView
+        android:id="@+id/receiveCaption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="RECEIVE"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/receiveImage"
+        app:layout_constraintStart_toEndOf="@+id/receiveImage"
+        app:layout_constraintTop_toTopOf="@+id/receiveImage" />
+
+    <Spinner
+        android:id="@+id/destinationSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/destinationEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/destinationEdit" />
+
+    <TextView
+        android:id="@+id/destinationEdit"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/receiveCaption"
+        app:layout_constraintEnd_toStartOf="@+id/destinationSpinner"
+        app:layout_constraintTop_toTopOf="@+id/receiveCaption" />
+
+    <Button
+        android:id="@+id/change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Change"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/receiveImage" />
+
+    <TextView
+        android:id="@+id/transactions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="Transactions"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transactionList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constrainedHeight="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transactions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -182,4 +182,6 @@ object Constants {
     const val APP_SHARED_PREFERENCE_NAME = "exchange_app_pref"
     const val DATABASE_NAME = "exchange_app_db"
     const val EUR = "EUR"
+    const val BASE_URL = "http://api.exchangeratesapi.io"
+    const val EXCHANGE_DATA = "exchange_data"
 }

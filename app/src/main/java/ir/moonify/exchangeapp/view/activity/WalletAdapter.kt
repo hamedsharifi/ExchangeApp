@@ -1,11 +1,11 @@
-package ir.moonify.exchangeapp
+package ir.moonify.exchangeapp.view.activity
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import ir.moonify.exchangeapp.databinding.BalanceItemBinding
 import ir.moonify.exchangeapp.model.CurrencyHolder
+import ir.moonify.exchangeapp.util.Utility
 
 
 class WalletAdapter : RecyclerView.Adapter<MainViewHolder>() {
@@ -27,7 +27,7 @@ class WalletAdapter : RecyclerView.Adapter<MainViewHolder>() {
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val currency = currencyList[position]
         holder.binding.theCurrency.text = currency.name
-        holder.binding.balance.text = currency.value.toBigDecimal().toPlainString()
+        holder.binding.balance.text = Utility.convertDigits(currency.value)
     }
 
     override fun getItemCount(): Int {

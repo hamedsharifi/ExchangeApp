@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Exchange App</string>
     <string name="wallet">Wallet</string>
+    <string name="insufficient_balance">Source balance insufficient!</string>
+    <string name="exchange_successfully">You have converted %1$s %2$s to %3$s %4$s. Commission Fee - %5$s %6$s.</string>
+    <string name="access_key">fa318fa187a5f70ebd24d7787287d23d</string>
 </resources>
