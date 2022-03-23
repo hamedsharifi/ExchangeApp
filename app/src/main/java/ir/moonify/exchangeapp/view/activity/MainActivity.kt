@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.baseCurrency.observe(this) {
-            binding.amount.text = Utility.convertDigits(it.value)
+            binding.amount.setText(Utility.convertDigits(it.value))
         }
 
         viewModel.convertedValue.observe(this) {
@@ -99,6 +99,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
             viewModel.getAllCurrencies()
             viewModel.getBaseCurrency()
+            viewModel.getTransactions()
+            binding.sourceEdit.setText("")
+            binding.destinationEdit.setText("")
         }
 
         /*viewModel.loading.observe(this, Observer {
@@ -112,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllCurrencies()
         viewModel.getBaseCurrency()
         viewModel.getRates()
+        viewModel.getTransactions()
     }
 
     private fun initSpinners(currencies: List<String>) {

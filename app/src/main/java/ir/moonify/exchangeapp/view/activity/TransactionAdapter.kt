@@ -34,11 +34,11 @@ class TransactionAdapter : RecyclerView.Adapter<TransactionViewHolder>() {
             holder.binding.transactionImage.setImageResource(R.drawable.change)
             holder.binding.conversionType.text = transaction.source + "->" + transaction.destination
         }
-        holder.binding.transactionAmount.text = transaction.amount.toString()
+        holder.binding.transactionAmount.text = Utility.convertDigits(transaction.amount)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return transactionList.size
     }
 }
 
